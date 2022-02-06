@@ -17,29 +17,32 @@ ul{
     padding: 16px;
     padding-bottom: 32px;
 }
-.headImage{
+.header-image{
 }
-.headCon{
+.header-main{
     display: flex;
     gap: 16px;
     padding-bottom: 32px;
     margin-bottom: 32px;
-    /*justify-content: center;*/
-    padding: 0;
     color: white;
     /*text-align: center;*/
 }
-.headCon h1{
+.header-header{
     font-size: 48px;
     color: #F9FAF8;
+    margin: 0;
+    letter-spacing: 0.03em;
 }
 ul,a{
     font-size: 18px;
     color: #E5E7EB
 }
 .bass{
-    width: 250px;
-    height: 250px;
+    width: 300px;  
+}
+img{
+    width: 200px;
+    height: 200px;
 }
 .nav{
     display: flex;
@@ -59,16 +62,38 @@ button{
     font-size: 24px;
     color: #F9FAF8;
 }
-.headText{
+.header-text{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
-.headText h1{
-    margin: 0;
-    letter-spacing: 0.03em;
-}
+
 p{
     line-height: 1.4em;
     letter-spacing: 0.03em;
+}
+.main{
+
+}
+.main-container{
+
+}
+.main-info{
+
+}
+.info-header{
+  font-size: 36px;
+  color: #1F2937;
+}
+.photo-container{
+  display: flex;
+  /*justify-content: center;*/
+  gap: 32px;
+  max-width: 200px;
+}
+.info{
+  text-align: center;
+}
+.text{
+
 }
