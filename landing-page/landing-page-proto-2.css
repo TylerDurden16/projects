@@ -41,8 +41,8 @@ ul,a{
     width: 300px;  
 }
 img{
-    width: 200px;
-    height: 200px;
+    width: 220px;
+    height: 220px;
 }
 .nav{
     display: flex;
@@ -74,6 +74,7 @@ p{
 }
 .main{
   /*display: flex;*/
+  margin: 32px;
 }
 .main-container{
 
@@ -89,6 +90,7 @@ p{
 .info-header{
   font-size: 36px;
   color: #1F2937;
+  margin-bottom: 32px;
 }
 .photo-container{
   display: flex;
@@ -102,4 +104,26 @@ p{
 }
 .text{
 
+}
+.quote{
+    margin: 32px;
+    display: flex;
+    justify-content: center;
+    padding: 32px;
+    background-color: #E5E7EB;
+}
+.quote-info{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin: 32px 0px;
+}
+.quote-text{
+    font-size: 36px;
+    font-weight: 300;
+    margin-bottom: 16px;
+    padding-top: 32px;
+}
+.quote-author{
+    font-weight: 800;
 }
