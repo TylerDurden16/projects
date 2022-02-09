@@ -73,13 +73,18 @@ p{
     letter-spacing: 0.03em;
 }
 .main{
-
+  /*display: flex;*/
 }
 .main-container{
 
 }
 .main-info{
-
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 68px;
+  margin: 0px 32px;
 }
 .info-header{
   font-size: 36px;
@@ -89,7 +94,8 @@ p{
   display: flex;
   /*justify-content: center;*/
   gap: 32px;
-  max-width: 200px;
+  padding: 0px 32px;
+  margin: 0px 32px;
 }
 .info{
   text-align: center;
