@@ -134,11 +134,12 @@ body{
 }
 .call-container{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     background-color: #3882F6;
     color: #F9FAF8;
     padding: 32px;
+    padding-left: 0px;
     width: 875px;
     height: 32px;
     border-radius: 5px;
@@ -164,4 +165,8 @@ body{
 }
 .info img{
     border-radius: 5px;
+}
+.bass-boat{
+    width: 150px;
+    height: 95px;
 }
