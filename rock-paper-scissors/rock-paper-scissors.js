@@ -1,53 +1,6 @@
-/*PROGRAM RockPaperScissors
 
-function computerPlay
-randomly generates 0-2
-IF(number is 0) THEN
-answer is rock
-ELSE IF(answer is 1) THEN
-answer is paper
-ELSE
-answer is scissors
-END
-return answer
-END
-
-function playRound
-takes in playerSelection and computerSelection
-IF (playerSelection is rock and computerSelection is paper) THEN
-answer is 'You lose!'
-ELSE IF (playerSelection is rock and computerSelection is scissors) THEN
-answer is 'You win!'
-ELSE IF (playerSelection is rock and computerSelection is rock) THEN
-answer is 'Tie!';
-ELSE IF (playerSelection is paper and computerSelection is scissors) THEN
-answer is 'You Lose!'
-ELSE IF (playerSelection is paper and computerSelection is rock) THEN
-answer is 'You win!'
-ELSE IF (playerSelection is paper and computerSelection is paper) THEN
-answer is 'Tie!'
-ELSE IF (playerSelection is scissors and computerSelection is paper) THEN
-answer is 'You win!'
-ELSE IF (playerSelection is scissors and computerSelection is rock) THEN
-answer is 'You lose!'
-ELSE IF (playerSelection is scissors and computerSelection is scissors) THEN
-answer is 'Tie!'
-ELSE
-answer is 'Computer error!'
-END
-return string declaring winner
-END
-
-function game()
-playRound() called 5 times
-WHILE(winner is not decided) DO
-playRound()
-Record score
-END
-Declare winner*/
-
+//Determines computer's choice
 function computerPlay() {
-    let computerChoice = '';
     const randNum = Math.floor(Math.random() * 3);
     if(randNum === 0) {
         return 'rock';
@@ -57,6 +10,8 @@ function computerPlay() {
         return 'scissors';
     } 
 }
+
+//Plays 1 rock, paper, scissors game using player and computer input
 function playRound(playerSelection, computerSelection) {
 playerSelection = playerSelection.toLowerCase();
     if (playerSelection === 'rock' && computerSelection === 'paper') {
@@ -85,6 +40,8 @@ playerSelection = playerSelection.toLowerCase();
 }
 const playerSelection = 'PAPER';
 
+//Plays 5 games, and determines winner. If there's a tie, sudden death
+//match played
 function game() {
     let playerScore = 0;
     let computerScore = 0;
