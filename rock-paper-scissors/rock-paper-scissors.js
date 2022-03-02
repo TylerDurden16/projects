@@ -35,10 +35,10 @@ playerSelection = playerSelection.toLowerCase();
     } else if (playerSelection === 'scissors' && computerSelection === 'scissors') {
         return 'Tie!';
     } else {
-        return 'Computer error';
+        return 'Computer error.';
     }
 }
-const playerSelection = 'PAPER';
+const playerSelection = prompt('Please enter your choice:');
 
 //Plays 5 games, and determines winner. If there's a tie, sudden death
 //match played
@@ -58,7 +58,7 @@ function game() {
           playerScore++;
       }
        else {
-          console.log('Computer error');
+          console.log('Computer error.');
       }
       console.log(results);
   }
@@ -69,7 +69,7 @@ function game() {
   } else if (playerScore < computerScore) {
       console.log('You lose!');
   } else if (playerScore === 3 && computerScore === 3 || playerScore === 4 && computerScore === 4 || playerScore === 5 && computerScore === 5){
-      console.log('Tie! Sudden death');
+      console.log('Tie! Sudden death match!');
       for(let j = 0;; j++){
       playRound(playerSelection, computerPlay());
       const finalResult = playRound(playerSelection, computerPlay());
@@ -86,7 +86,7 @@ function game() {
           playerScore++;
       }
        else {
-          console.log('Computer error');
+          console.log('Computer error.');
       }
     }
     console.log(`playerScore: ${playerScore}`);
