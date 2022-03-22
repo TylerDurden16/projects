@@ -19,7 +19,7 @@ playerSelection = playerSelection.toLowerCase();
     } else if (playerSelection === 'rock' && computerSelection === 'scissors') {
         return 'You win! Rock beats Scissors';
     } else if (playerSelection === 'rock' && computerSelection === 'rock') {
-        return 'Tie!';
+        return'Tie!';
     } 
     if (playerSelection === 'paper' && computerSelection === 'scissors') {
         return 'You lose! Scissors beats Paper';
@@ -35,77 +35,106 @@ playerSelection = playerSelection.toLowerCase();
     } else if (playerSelection === 'scissors' && computerSelection === 'scissors') {
         return 'Tie!';
     } else {
-        return 'Computer error!';
+        return 'Computer error.';
     }
 }
-//const playerSelection = prompt('Please enter your choice:');
-let playerSelection = ''; 
-//Plays 5 games, and determines winner. If there's a tie, sudden death
-//match played
 
+let playerSelection = '';    
+
+//Plays rock, paper, scissors 5 times and determines winner. If there's a tie, sudden death
 function game() {
-    let playerScore = 0;
-    let computerScore = 0;
+    let playerScore = 0;                               //Player score  
+    let computerScore = 0;                             //Computer score
+    const div = document.createElement('div');         //Results held in div
+    div.setAttribute('id', 'results');
+    let playScore = document.createElement('h2');      
+    let comScore = document.createElement('h2');       
+    const finalScore = document.createElement('h1');   //Final score after 5 games holder
+    finalScore.setAttribute('id', 'finalScore');
 
+//Plays game 5 times, adds results to div
   for (let i = 0; i < 5; i++) {
-      const results = playRound(playerSelection, computerPlay());
-      //console.log(results);
-      if (results.includes('You win')){
+      const fiveGamesPlayed = playRound(playerSelection, computerPlay());
+
+      if (fiveGamesPlayed.includes('You win')){
         playerScore++;  
-      } else if (results.includes('You lose')) {
+      } else if (fiveGamesPlayed.includes('You lose')) {
           computerScore++;
-      } else if (results.includes('Tie!')) {
+      } else if (fiveGamesPlayed.includes('Tie!')) {
           computerScore++;
           playerScore++;
       }
        else {
           console.log('Computer error.');
       }
-    console.log(results);
+
+      const h3 = document.createElement('h3');       //Round results holder
+      h3.textContent = fiveGamesPlayed;
+      div.appendChild(h3);
   }
-  console.log(`playerScore: ${playerScore}`);
-  console.log(`compScore: ${computerScore}`);
-  
+
+  playScore.textContent = `Player Score: ${playerScore}`;        //Score tallied up
+  comScore.textContent = `Computer Score: ${computerScore}`;
+
+  //Determines winner after 5 games
   if (playerScore > computerScore) {
-    console.log('You win!');
+    finalScore.textContent ='You win!';
+    div.appendChild(finalScore);
+    div.appendChild(playScore);
+    div.appendChild(comScore);
 } else if (playerScore < computerScore) {
-    console.log('You lose!');
-} else if (playerScore === 3 && computerScore === 3 || playerScore === 4 &&
-     computerScore === 4 || playerScore === 5 && computerScore === 5){
-    console.log('Tie! Sudden death match!');
+    finalScore.textContent ='You lose!';
+    div.appendChild(finalScore);
+    div.appendChild(playScore);
+    div.appendChild(comScore);
+}else if (playerScore === 3 && computerScore === 3 || playerScore === 4 &&  //For tie game, for loop plays game until 
+     computerScore === 4 || playerScore === 5 && computerScore === 5){      //there's a winner
+    
+    finalScore.textContent = 'Tie game! Sudden death match!';
+    div.appendChild(finalScore);
     for(let j = 0;; j++){
     playRound(playerSelection, computerPlay());
-    const finalResult = playRound(playerSelection, computerPlay());
-   
-    if (finalResult.includes('You win')){
+    const finalRound = playRound(playerSelection, computerPlay());
+    const finalRoundh2 = document.createElement('h2');
+    finalRoundh2.setAttribute('id', 'finalRound');   
+    if (finalRound.includes('You win')){
         playerScore++;
-      console.log(finalResult);
+      finalRoundh2.textContent = finalRound;
+      div.appendChild(finalRoundh2);
       break;
-    } else if (finalResult.includes('You lose')) {
+    } else if (finalRound.includes('You lose')) {
         computerScore++;
-      console.log(finalResult);
+      finalRoundh2.textContent = finalRound;
+      div.appendChild(finalRoundh2);
       break;
-    } else if (finalResult.includes('Tie!')){
+    } else if (finalRound.includes('Tie!')){
         computerScore++;
         playerScore++;
     }
      else {
-        console.log('Computer error');
-    }
+        console.log('Computer error.');
+    } 
   }
-  console.log(`playerScore: ${playerScore}`);
-  console.log(` compScore: ${computerScore}`);
+  playScore.textContent = `Player Score: ${playerScore}`;
+  comScore.textContent = `Computer Score: ${computerScore}`;
     }
  else {
-    console.log('Computer error@');
+    console.log('Computer error');
  }
+   
+   div.appendChild(playScore);              //Scores added to div
+   div.appendChild(comScore);
+   document.body.appendChild(div);          //div added to html
   }
-
 
 
 const playerButtons = document.querySelectorAll('button');
-
 //Determines player's selection based on button clicked
+function removeDiv(e) {
+    const div = document.getElementById('results');
+    document.body.removeChild(div); 
+}
+
 function determinePlaySel(e) {
     if (this.getAttribute('id') === "rock") {
         playerSelection = "rock";
@@ -116,6 +145,7 @@ function determinePlaySel(e) {
     } else if (this.getAttribute('id') === "scissors") {
         playerSelection = "scissors";
        game();
-    }
+    } playerButtons.forEach(button => button.addEventListener('click', removeDiv));
 }
+
 playerButtons.forEach(button => button.addEventListener('click', determinePlaySel));
