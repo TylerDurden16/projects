@@ -79,7 +79,7 @@ document.body.appendChild(clearNewGridCon);           //Clear/new grid attached 
 
 createEtch(prompt("Enter a number from 1-100"));
 
-//window.addEventListener('load', createEtch(prompt("Enter a number from 1-100")));
+
 const clearColorGrid = e => {
     const clear = document.querySelectorAll(".container");
 for (const div of clear) {
@@ -87,11 +87,20 @@ for (const div of clear) {
 }
     createEtch(prompt("Enter a number from 1-100"));
     let newDiv = document.querySelectorAll(".div");
-    
+
     newDiv.forEach(div => {
         div.removeEventListener('mouseover', fadeToBlack);
         div.addEventListener('mouseover', randomColor)});
 }
+
+const clearFadeGrid = e => {
+    const clear = document.querySelectorAll(".container");
+for (const div of clear) {
+    mainDiv.removeChild(div);
+}
+    createEtch(prompt("Enter a number from 1-100"));
+}
+
 
 const colorReset = e => {
     r = 255;
@@ -100,5 +109,5 @@ const colorReset = e => {
 }
 
 clearColorBtn.addEventListener('click', clearColorGrid);
-//fadeTBlackBtn.addEventL(istener('click', );
-//fadeToBlackBtn.addEventListener('click', colorReset);
+fadeToBlackBtn.addEventListener('click', clearFadeGrid);
+fadeToBlackBtn.addEventListener('click', colorReset);
