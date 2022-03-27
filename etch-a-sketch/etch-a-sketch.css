@@ -3,22 +3,22 @@ body {
 }
 #mainDiv {
   border-style: solid;
-  border-color: black; 
+  /*border-color: black; */
   display: flex;
   flex-direction: row;
-  /*flex-basis: auto;
-  
-  max-width: 960px;
-  width: 960px;*/
 }
 .div {
-    width: 16px;
-    height: 16px;
-    border-style: solid;
-    border-color: red; 
+
+    /*border-style: solid;
+    border-color: red;*/ 
     display: flex;
 }
 .container {
-    color: blue;
-    /*flex-grow: 1;*/
+    /*color: blue;*/
+    
+}
+.container2 {
+    border-style: solid;
+    border-color: red;
+    background-color: pink;
 }
