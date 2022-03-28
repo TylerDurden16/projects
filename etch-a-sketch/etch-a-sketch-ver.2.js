@@ -74,7 +74,7 @@ function createEtch() {
     }
     document.body.insertBefore(mainDiv, clearNewGridCon);       //Main div attached to HTML
 }
-
+//Runs Etch-A-Sketch on load
 const runEtch = e => {
     createEtch();
 }
