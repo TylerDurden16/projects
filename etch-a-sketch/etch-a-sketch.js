@@ -24,15 +24,19 @@ const clearNewGridCon = document.createElement('div'); //Container for clear/new
 clearNewGridCon.setAttribute('class', 'clearNewGrid');   //ID set
 const colorBtn = document.createElement('button');     //Buttons created
 const fadeToBlackBtn = document.createElement('button');   
-const eraserBtn = document.createElement('button');     
+const eraserBtn = document.createElement('button');
+const regularBtn = document.createElement('button');     
 colorBtn.id = "clearBtn";                               //ID's set
 fadeToBlackBtn.id = "fadeToBlack";                       
 eraserBtn.id = "eraser";
+regularBtn.id = "regular"
 colorBtn.textContent = 'New Color Grid';                //Text set
 fadeToBlackBtn.textContent = "Fade To Black Grid";
 eraserBtn.textContent = "Eraser";
+regularBtn.textContent = "Regular Grid"
 clearNewGridCon.appendChild(colorBtn);                 //Buttons attached to clear/new grid 
 clearNewGridCon.appendChild(fadeToBlackBtn);           
+clearNewGridCon.appendChild(regularBtn);
 clearNewGridCon.appendChild(eraserBtn);
 document.body.appendChild(clearNewGridCon);      //Clear/new grid container attached to HTML 
 const mainDiv = document.createElement('div');  //Main div holding Etch-A-Sketch created
@@ -54,13 +58,12 @@ const blackEtch = e => {
     e.target.style.backgroundColor = "black";
 }    
 
-                              
 //Slowly fades Etch-A-Sketch to black                                                                                                                                                                                            
 const fadeToBlack = e => {     
-    r -= 10;
-    g -= 10;
-    b -= 10;
-e.target.style.backgroundColor = `rgb(${r},${g},${b})`;
+    r -= 5;
+    g -= 5;
+    b -= 5;
+    e.target.style.backgroundColor = `rgb(${r},${g},${b})`;
 }
 
 function createEtch(grid) {
@@ -78,8 +81,8 @@ function createEtch(grid) {
             const div = document.createElement('div');      //Box div created   
             div.setAttribute('class', 'div');              //Class set
             container.appendChild(div);                    //Box div attached to container     
-            div.setAttribute('style', `width: ${400 / grid}px ; height: ${400 / grid}px`);   
-            div.addEventListener('mouseover', blackEtch);
+            div.setAttribute('style', `width: ${400 / grid}px; height: ${400 / grid}px;`); 
+            div.addEventListener('mouseover', blackEtch);  
         }
         mainDiv.appendChild(container);                 //Containers attached to Main div             
     }
@@ -93,6 +96,7 @@ createEtch(prompt("Enter a number from 1-100"));
 const clearColorGrid = e => {
     const clear = document.querySelectorAll(".container");
 for (const div of clear) {
+    console.log(div);
     mainDiv.removeChild(div);
 }
     createEtch(prompt("Enter a number from 1-100"));
@@ -117,10 +121,20 @@ for (const div of clear) {
         div.addEventListener('mouseover', fadeToBlack)});
 }
 
+//Regular Etch-A-Sketch
+const regularGrid = e => {
+    const clear = document.querySelectorAll(".container");
+    for (const div of clear) {
+        mainDiv.removeChild(div);
+    }
+    createEtch(prompt("Enter a number from 1-100"));
+}
+
 //Erases Etch-A-Sketch
 const eraser = e => {
     const divs = document.querySelectorAll('.div');
-    divs.forEach( div => {div.addEventListener('mouseover', function(e) {
+    divs.forEach( div => {
+        div.addEventListener('mouseover', function(e) {
         e.target.style.backgroundColor = "white";
     })});
 }
@@ -136,3 +150,4 @@ colorBtn.addEventListener('click', clearColorGrid);
 fadeToBlackBtn.addEventListener('click', clearFadeGrid);
 fadeToBlackBtn.addEventListener('click', colorReset);
 eraserBtn.addEventListener('click', eraser);
+regularBtn.addEventListener('click', regularGrid);
