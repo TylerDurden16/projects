@@ -1,0 +1,27 @@
+body {
+    display: flex;
+}
+#mainDiv {
+  border-style: solid;
+  /*border-color: black; */
+  display: flex;
+  flex-direction: row;
+}
+.div {
+width: 16px;
+height: 16px;
+    border-style: solid;
+    border-color: red; 
+    display: flex;
+}
+.clearNewGrid {
+    display: flex;
+    
+}
+#holder {
+    /*display: flex;*/
+}
+.container {
+    display: flex;
+    flex-direction: row;
+}
