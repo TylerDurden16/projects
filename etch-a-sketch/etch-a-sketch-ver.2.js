@@ -4,10 +4,10 @@ const colorBtn = document.createElement('button');     //Buttons created
 const fadeToBlackBtn = document.createElement('button');   
 const eraserBtn = document.createElement('button');
 const regularBtn = document.createElement('button');     
-colorBtn.id = "clearBtn";                               //ID's set
-fadeToBlackBtn.id = "fadeToBlack";                       
-eraserBtn.id = "eraser";
-regularBtn.id = "regular"
+colorBtn.id = "colorBtn";                               //ID's set
+fadeToBlackBtn.id = "fadeToBlackBtn";                       
+eraserBtn.id = "eraserBtn";
+regularBtn.id = "regularBtn"
 colorBtn.textContent = 'New Color Grid';                //Text set
 fadeToBlackBtn.textContent = "Fade To Black Grid";
 eraserBtn.textContent = "Eraser";
@@ -134,7 +134,7 @@ const colorReset = e => {
     b = 250;
 }
 
-window.addEventListener('load', runEtch);
+//window.addEventListener('load', runEtch);
 colorBtn.addEventListener('click', clearColorGrid);
 fadeToBlackBtn.addEventListener('click', clearFadeGrid);
 fadeToBlackBtn.addEventListener('click', colorReset);

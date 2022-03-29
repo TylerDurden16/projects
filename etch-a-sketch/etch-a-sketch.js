@@ -1,35 +1,13 @@
-/*PROGRAM etchASketch
-Takes in dimensions
-create mainDiv
-WHILE (DIMENSIONS AREN'T MADE) DO
-Create containers
-Create divs 
-Add divs to containers
-Attach containers to mainDiv
-END
-Attach mainDiv to body
-END
-Create button that clears grid and asks for new grid dimensions (prompt)
-etchASketch() takes in dimensions
-WHILE (DIMENSIONS AREN'T MADE) DO
-Create containers
-Create divs 
-Add divs to containers
-Attach containers to mainDiv
-END
-Attach mainDiv to body
-END
-*/
 const clearNewGridCon = document.createElement('div'); //Container for clear/new grids created
 clearNewGridCon.setAttribute('class', 'clearNewGrid');   //ID set
 const colorBtn = document.createElement('button');     //Buttons created
 const fadeToBlackBtn = document.createElement('button');   
 const eraserBtn = document.createElement('button');
 const regularBtn = document.createElement('button');     
-colorBtn.id = "clearBtn";                               //ID's set
-fadeToBlackBtn.id = "fadeToBlack";                       
-eraserBtn.id = "eraser";
-regularBtn.id = "regular"
+colorBtn.id = "colorBtn";                               //ID's set
+fadeToBlackBtn.id = "fadeToBlackBtn";                       
+eraserBtn.id = "eraserBtn";
+regularBtn.id = "regularBtn"
 colorBtn.textContent = 'New Color Grid';                //Text set
 fadeToBlackBtn.textContent = "Fade To Black Grid";
 eraserBtn.textContent = "Eraser";
