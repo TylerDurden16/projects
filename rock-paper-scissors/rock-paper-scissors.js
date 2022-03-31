@@ -2,7 +2,7 @@
 //Determines computer's choice
 function computerPlay() {
     const randNum = Math.floor(Math.random() * 3);
-    if(randNum === 0) {
+    if (randNum === 0) {
         return 'rock';
     } else if (randNum === 1) {
         return 'paper';
@@ -121,7 +121,6 @@ function game() {
  else {
     console.log('Computer error');
  }
-   
    div.appendChild(playScore);              //Scores added to div
    div.appendChild(comScore);
    document.body.appendChild(div);          //div added to html

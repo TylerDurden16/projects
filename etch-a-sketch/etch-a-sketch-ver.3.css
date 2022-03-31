@@ -1,0 +1,35 @@
+body {
+    display: flex;
+}
+#mainDiv {
+  border-style: solid;
+  /*border-color: black; */
+  display: flex;
+  flex-direction: column;
+}
+.div {
+    width: 16px;
+    height: 16px;
+    border-style: solid;
+    display: flex;
+}
+.clearNewGrid {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    margin-top: 8px;
+}
+#holder {
+    /*display: flex;*/
+}
+.container {
+    display: flex;
+    /*flex-direction: row;*/
+}
+.main {
+    display: flex;
+    /*justify-content: space-between;*/
+}
+button {
+
+}

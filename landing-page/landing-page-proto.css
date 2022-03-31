@@ -16,14 +16,12 @@ ul{
     justify-content: space-around;
     padding: 16px;
 }
-.headImage{
-}
+
 .headCon{
     display: flex;
     gap: 16px;
     padding-bottom: 32px;
     margin-bottom: 32px;
-    /*justify-content: center;*/
     padding: 0;
     color: white;
 }
@@ -43,7 +41,6 @@ ul,a{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /*text-align: center;*/ 
     padding-bottom: 16px;
     margin-bottom: 16px;
 }

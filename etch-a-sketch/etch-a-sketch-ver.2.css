@@ -1,27 +1,39 @@
 body {
-    display: flex;
+    /*display: flex;*/
 }
-#mainDiv {
+#functionalityDiv {
   border-style: solid;
-  /*border-color: black; */
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
 .div {
-width: 16px;
-height: 16px;
-    border-style: solid;
-    border-color: red; 
-    display: flex;
+    width: 16px;
+    height: 16px;
+    /*border-style: solid;*/
 }
 .clearNewGrid {
     display: flex;
-    
+    justify-content: space-between;
+    padding: 10px 5px;
+    background-color: red;
 }
-#holder {
-    /*display: flex;*/
+#etchHolder {
+    display: flex;
+    justify-content: center;
 }
 .container {
     display: flex;
-    flex-direction: row;
+    /*flex-direction: row;*/
+}
+.mainContainer {
+   /* display: flex;
+    justify-content: space-between;*/
+}
+button {
+
+}
+.newGridHolder {
+    color: blue;
+    display: flex;
+    background-color: red;
 }
