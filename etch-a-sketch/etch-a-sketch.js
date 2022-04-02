@@ -27,8 +27,8 @@ clearNewGridCon.appendChild(colorBtn);
 clearNewGridCon.appendChild(fadeToBlackBtn);           
 clearNewGridCon.appendChild(regularBtn);
 clearNewGridCon.appendChild(eraserBtn);
-mainContainer.appendChild(clearNewGridCon);   //Grid container attached to main container 
-
+//Grid container attached to main container 
+mainContainer.appendChild(clearNewGridCon);   
 
 //White rgb color for fadeToBlack function
 let r = 255;
@@ -76,8 +76,8 @@ function createEtch(grid) {
         }
         etchDiv.appendChild(container);                 //Containers attached to Etch-A-Sketch            
     }
-mainContainer.appendChild(etchDiv);        //Etch-A-Sketch attached to main container
-entireEtch.appendChild(mainContainer);          //Main container attached to entire container    
+    mainContainer.appendChild(etchDiv);        //Etch-A-Sketch attached to main container
+    entireEtch.appendChild(mainContainer);          //Main container attached to entire container    
     document.body.appendChild(entireEtch);       //Main container attached to HTML
 }
 
@@ -87,7 +87,8 @@ createEtch(prompt("Enter a number from 1-100"));  //Etch-A-Sketch drawn/called
 //Removes prior grid and adds new color grid
 const clearColorGrid = e => {
     const containers = document.querySelectorAll(".container"); //Gets all "container" divs
-for (const div of containers) {  //Loop removes "container" divs from Etch-A-Sketch
+    
+    for (const div of containers) {  //Loop removes "container" divs from Etch-A-Sketch
     etchDiv.removeChild(div);
 }
     createEtch(prompt("Enter a number from 1-100")); //Etch-A-Sketch drawn/called
@@ -101,7 +102,8 @@ for (const div of containers) {  //Loop removes "container" divs from Etch-A-Ske
 //Removes prior grid and adds Fade-To-Black grid
 const clearFadeGrid = e => {
     const containers = document.querySelectorAll(".container"); 
-for (const div of containers) { 
+    
+    for (const div of containers) { 
     etchDiv.removeChild(div); 
 }
     createEtch(prompt("Enter a number from 1-100"));  
@@ -115,6 +117,7 @@ for (const div of containers) {
 //Regular Etch-A-Sketch
 const regularGrid = e => {
     const containers = document.querySelectorAll(".container");
+    
     for (const div of containers) {
         etchDiv.removeChild(div);
     }
