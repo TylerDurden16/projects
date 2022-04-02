@@ -1,39 +1,24 @@
-body {
-    /*display: flex;*/
-}
-#functionalityDiv {
-  border-style: solid;
-  display: flex;
-  flex-direction: column;
-}
-.div {
-    width: 16px;
-    height: 16px;
-    /*border-style: solid;*/
-}
-.clearNewGrid {
+#etchDiv {
+    border-style: solid;
     display: flex;
-    justify-content: space-between;
-    padding: 10px 5px;
-    background-color: red;
-}
-#etchHolder {
-    display: flex;
-    justify-content: center;
-}
-.container {
-    display: flex;
-    /*flex-direction: row;*/
-}
-.mainContainer {
-   /* display: flex;
-    justify-content: space-between;*/
-}
-button {
-
-}
-.newGridHolder {
-    color: blue;
-    display: flex;
-    background-color: red;
-}
+    flex-direction: column;
+  }
+  .div {
+  
+  }
+  #clearNewGrid {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 5px;
+      background-color: red;
+  }
+  #entireEtch {
+      display: flex;
+      justify-content: center;
+  }
+  .container {
+      display: flex;
+  }
+  button {
+  
+  }
