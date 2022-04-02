@@ -1,24 +1,25 @@
-body {
-    display: flex;
-}
-#mainDiv {
+
+#etchDiv {
   border-style: solid;
-  /*border-color: black; */
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
 .div {
-
-    /*border-style: solid;
-    border-color: red;*/ 
-    display: flex;
-}
-.container {
-    /*color: blue;*/
     
 }
-.container2 {
-    border-style: solid;
-    border-color: red;
-    background-color: pink;
+#clearNewGrid {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 5px;
+    background-color: red;   
+}
+#entireEtch {
+    display: flex;
+    justify-content: center;    
+}
+.container {
+    display: flex; 
+}
+button {
+
 }
