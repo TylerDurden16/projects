@@ -1,26 +1,23 @@
-body {
-    display: flex;
-}
-#mainDiv {
+
+#etchDiv {
   border-style: solid;
-  /*border-color: black; */
+  
   display: flex;
   flex-direction: column;
 }
 .div {
     width: 16px;
     height: 16px;
-    border-style: solid;
-    display: flex;
 }
-.clearNewGrid {
+#clearNewGrid {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 8px;
-    margin-top: 8px;
+    padding: 10px 5px;
+    background-color: red;
 }
-#holder {
-    /*display: flex;*/
+#entireEtch {
+    display: flex;
+    justify-content: center;
 }
 .container {
     display: flex;
