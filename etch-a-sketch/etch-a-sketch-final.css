@@ -1,0 +1,24 @@
+#etchDiv {
+    border-style: solid;
+    display: flex;
+    flex-direction: column;
+  }
+  .div {
+  
+  }
+  #clearNewGrid {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 5px;
+      background-color: red;
+  }
+  #entireEtch {
+      display: flex;
+      justify-content: center;
+  }
+  .container {
+      display: flex;
+  }
+  button {
+  
+  }
