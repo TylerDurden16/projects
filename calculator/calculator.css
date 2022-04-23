@@ -1,0 +1,42 @@
+.head {
+    display: flex;
+    flex-direction: column;
+    margin: 150px;
+    align-items: flex-end;
+}
+#calculator {
+    display: flex;
+    /*align-items: center;*/
+    margin-top: 16px;
+}
+.mainCon {
+    display: flex;
+    padding: 0px 10px;
+}
+.operCon {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+body {
+    display: flex;
+    justify-content: center;
+}
+.numCon {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.numbers {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+.zero {
+    display: flex;
+    gap: 12px;
+}
+#numInput {
+    border: solid black;
+    padding: 8px;
+}
