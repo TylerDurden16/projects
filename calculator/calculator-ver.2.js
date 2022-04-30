@@ -28,24 +28,7 @@ const erase = e => {
     numArray.splice(0, numArray.length);
     operArray.splice(0, operArray.length);
 }
-
-const totalNum = () => {
-        //let sum = 0;
-      //  for (let i = 0; ; i++){
-       /* if (operArray[0] ==="/") {
-            sum = numArray[0] / numArray[1];
-        } else if (operArray[0] === "*") {
-            sum = numArray[0] * numArray[1];
-        } else if (operArray[0] === "-") {
-            sum = numArray[0] - numArray[1];
-        } else if (operArray[0] === "+") {
-            sum = numArray[0] + numArray[1];
-        } else {
-            console.log("Error in totalNum()");
-        }*/
-
-    //}
-operArray.map((oper, index) => {
+/*const checkOper = operArray.map((oper, index) => {
     if (oper === "m") {
       multipyPos.push(index);
       operPos.multiply.push(index);
@@ -59,10 +42,16 @@ operArray.map((oper, index) => {
         subPos.push(index);
         operPos.subtract.push(index);
     }
-});
+    return oper;
+});*/
 
-    console.log(operPos);
-    if (operArray[1] === "=") {
+const totalNum = () => {
+        //let sum = 0;
+
+//checkOper();
+   // console.log(operArray);
+    //console.log(operPos);
+   /* if (operArray[1] === "=") {
         //numArray.splice(0, 2);
         //operArray.splice(0, 2);
         console.log(numArray);
@@ -71,7 +60,7 @@ operArray.map((oper, index) => {
         numInput.textContent = sum;
         console.log(sum);
         return sum;
-    }
+    }*/
     //numArray[0] = sum;
     //numArray.pop();
     
@@ -82,6 +71,112 @@ operArray.map((oper, index) => {
     //console.log(numArray);
     //return sum;
 }
+
+const operate = () => {
+    
+    for (let i = 0; i < 10; i++) {
+     operArray.map((oper, index) => {
+       // console.log("runs!!");
+    if (oper === "m") {
+        sum = numArray[index] * numArray[index + 1];
+        numArray.splice(index, 0, sum);
+        numArray.splice(index + 1, 2);
+        console.log(numArray);
+        
+                operArray.splice(index, 1);
+            
+        console.log(operArray);
+    } if (oper === "d") {
+        sum = numArray[index] / numArray[index + 1];
+        numArray.splice(index, 0, sum);
+        console.log(sum);
+        numArray.splice(index + 1, 2);
+        console.log(numArray);
+        operArray.splice(index, 1);
+        console.log(operArray);
+    }
+        });
+
+}
+
+   /* let j = 0;
+    while (!operArray.includes("a")) {
+        operArray.map((oper, index) => {  
+    if (oper === "a") {
+        sum = numArray[index] + numArray[index + 1];
+        numArray.splice(index, 0, sum);
+        numArray.splice(index + 1, 2);
+        console.log(numArray);
+        operArray.map((oper, index) => {
+            if (oper === "a") {
+                oper.slice(index, 1);
+            }
+            return oper;
+        });
+        
+    }
+    }); 
+j++;
+}
+    let k = 0;
+   while (!operArray.includes("s")){
+    operArray.map((oper, index) => {  
+    if (oper === "s") {
+        sum = numArray[index] + numArray[index + 1];
+        numArray.splice(index, 0, sum);
+        numArray.splice(index + 1, 2);
+        console.log(numArray);
+    }
+    operArray.map((oper, index) => {
+        if (oper === "s") {
+            oper.slice(index, 1);
+        }
+        return oper;
+    });
+   })
+k++;
+}*/
+return numArray;
+}
+
+
+        /*for (let i = 0; ; i++){
+            
+        if (operArray[i] === "m") {
+            sum = numArray[multipyPos.value] * numArray[multipyPos.value + 1];
+            numArray.splice(multipyPos.value, 0, sum);
+            numArray.splice(multipyPos.value + 1, 2);
+            operArray.map((oper, index) => {
+                if (oper === "m") {
+                    oper.slice(index, 1);
+                }
+                return oper;
+            });
+        } else if (operArray[i] === "d") {
+            sum = numArray[dividePos.value] / numArray[dividePos.value + 1];
+            numArray.splice(dividePos.value, 0, sum);
+            numArray.splice(dividePos.value + 1, 2);
+            operArray.map((oper, index) => {
+                if (oper === "d") {
+                    oper.slice(index, 1);
+                }
+                return oper;
+            });
+        } 
+        for ( let j = 0; ; j++) {
+        if (operArray[i] === "a") {
+            
+            sum = numArray[j] + numArray[i +1];
+            numArray.splice()
+            
+        } else if (dividePos[i] !== 0) {
+            sum = numArray[i] + numArray[i];
+        } else {
+            console.log("Error in totalNum()");
+        }
+    }
+    }
+}*/
 
 const addValues = e => {  
      total += e.target.value || e.key;
@@ -98,7 +193,7 @@ const checkOperators = () => {
     if (operUsed === true && operArray[1]) {
         //operArray[0] = operArray[1];
         //operArray.pop();
-        console.log(operArray);
+        //console.log(operArray);
     }
 
 }
@@ -126,7 +221,7 @@ const addOperators = e => {
            numArray.splice(0,1);
         } 
            
-        console.log(numArray);
+       // console.log(numArray);
         
         numAdded = false;  
      if (e.target.id === "divide" || e.key === "/") {
@@ -147,14 +242,14 @@ const addOperators = e => {
         operUsed = true;
     } else if (e.target.id === "equals" || e.key === "=" || e.key === "Enter") {
         operArray.push("=");
+        operate();
     } else {
         console.log("Error in addOperators()");
     }
-    if (operArray.length === 6) {
-        totalNum();
+    if (operArray.length === 3) {
+       // totalNum();
     }
-   // totalNum();
-    console.log(operArray);
+    totalNum();
 }
 
 const keyInput = e => {
