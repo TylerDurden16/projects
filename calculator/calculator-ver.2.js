@@ -18,7 +18,7 @@ currTotal.style.display = "none";
 const arrStr = operArray.join("");
 
 const erase = e => {
-    numInput.textContent = "0";
+    numInput.textContent = 0;
     total = "";
     currTotal.textContent = "";
     numArray.splice(0, numArray.length);
@@ -26,22 +26,8 @@ const erase = e => {
 }
 
 const totalNum = () => {
-        //let sum = 0;
-        
-     
-
    //console.log(operArray);
-    //console.log(operPos);
-   /* if (operArray[1] === "=") {
-        //numArray.splice(0, 2);
-        //operArray.splice(0, 2);
-        console.log(numArray);
-        console.log(operArray);
-        //currTotal.textContent = sum;
-        numInput.textContent = sum;
-        console.log(sum);
-        return sum;
-    }*/
+  
     //numArray[0] = sum;
     //numArray.pop();
     
@@ -53,97 +39,110 @@ const totalNum = () => {
 }
 
 const multiplyDivide = () => {
-    
-    for (let j = 0; j < 10; j++) {        
-     if (arrStr.startsWith("s") || arrStr.startsWith("a")) {
-     //j = operArray.findIndex(oper => oper === "m") || operArray.findIndex(oper => oper === "d");
+   let mDArrStr = arrStr;
+    for (let j = 0; ; j++) {        
+     if (mDArrStr.startsWith("s") || mDArrStr.startsWith("a")) {
         continue;
-     } else if (arrStr.startsWith("m") || arrStr.startsWith("d")) {
-         j = 0;
- }  else if (arrStr.endsWith("d") || arrStr.endsWith("m")){
-    j = operArray.length - 2;
- }
- 
- if (operArray[j] === "m") {
-     let index = operArray.findIndex(oper => oper === "m");
+    } 
+    else if (operArray[j] === "m") {
+     let index = operArray.indexOf("m");
      sum = numArray[index] * numArray[index + 1];
      numArray.splice(index, 2, sum);
      console.log(numArray);
-     operArray.splice(index, 1);    
+     operArray.splice(index, 1);
+     mDArrStr = operArray.join("");
      console.log(operArray);
- } if (operArray[j] === "d") {
+    } if (operArray[j] === "d") {
      index = operArray.indexOf("d");
      sum = numArray[index] / numArray[index + 1];
      numArray.splice(index, 2, sum);
     // console.log(numArray);
      operArray.splice(index, 1);
+     mDArrStr = operArray.join();
      console.log(operArray);
+     console.log(mDArrStr);
  } 
- if (arrStr.startsWith("a") || arrStr.startsWith("s") && !operArray.includes("d") && !operArray.includes("m")) {
-    addSubtract();
+ if (mDArrStr.includes("d") || mDArrStr.includes("m")) {  
+   multiplyDivide();
+    break;
+}  
+else if (operArray.length === 0) {
     break;
 }
-    else if (arrStr.endsWith("s") || arrStr.endsWith("a") || operArray.length === 1) {
-     break;
+else if (!operArray.includes("d",0) && !operArray.includes("m",0)) { 
+    console.log("G");
+    addSubtract();
+    break; 
  }
-
 }  
 console.log(numArray);    
 } 
 
 const operate = () => { 
-   
-    console.log(operArray);
-    if (operArray.includes("m") || operArray.includes("d")) {
+    if (numArray.length === 1) {
+        return numArray;
+    }
+    else if (operArray.includes("m") || operArray.includes("d") && !isNaN(numArray)) {
     multiplyDivide();
    }   
        else if (!operArray.includes("d") || !operArray.includes("m") && operArray.includes("a") || operArray.includes("s")) {
            addSubtract();
        }
        operUsed = false;
-       numInput.textContent =sum;
+       numInput.textContent = sum;
 }
 const addSubtract = () => {
-        for (let i = 0; i < 10; i++) {
+    let aSArrStr = arrStr;
+        for (let i = 0; ; i++) {
             
         if (operArray[i] === "a") {
-          let  index2 = operArray.indexOf("a");
+          let  index = operArray.indexOf("a");
           console.log(numArray);
-            sum = numArray[index2] + numArray[index2 + 1];
-            numArray.splice(index2, 2, sum);
-            operArray.splice(index2, 1);  
+            sum = numArray[index] + numArray[index + 1];
+            numArray.splice(index, 2, sum);
+            operArray.splice(index, 1); 
+            aSArrStr = operArray.join(""); 
             console.log(operArray);
             console.log(numArray);
         } if (operArray[i] === "s") {
-            index2 = operArray.indexOf("s");
-            sum = numArray[index2] - numArray[index2 + 1];
-            numArray.splice(index2, 2, sum);
-            operArray.splice(index2, 1);  
+            index = operArray.indexOf("s");
+            sum = numArray[index] - numArray[index + 1];
+            console.log(sum);
+            numArray.splice(index, 2, sum);
+            operArray.splice(index, 1);
+            aSArrStr = operArray.join("");  
             console.log(operArray);
             console.log(numArray);
-        }  if (arrStr.startsWith("a") || arrStr.startsWith("s")) {
-            i = 0;
-        } else if (operArray.includes("a") || arrStr.endsWith("s")) { 
-            i = operArray.length - 2;
-            //i--;
-   } if (numArray.length === 1) {
+        } if (aSArrStr.includes("a") || aSArrStr.includes("s")) {
+            addSubtract();
+            break;
+   } else if (numArray.length === 1 || operArray.length === 0) {
             break;
         }
     } console.log(arrStr);
     console.log(numArray);
     }
 
-
+const w = () => {
+    numArray.push(12,4,151,62,17,31,17,2);
+    operArray.push("s","m","d","a","m","s","d");
+}
 
 const addValues = e => {  
      total += e.target.value || e.key;
      numInput.textContent = total;
-
-     numAdded = true;   
+     numAdded = true;  
+     operUsed = false; 
 }
 
 const checkOperators = () => { 
-    if (operUsed === true && numAdded === false && operArray[1]) {
+    
+        if (operUsed === true && numAdded === false && operArray.length === 1) {
+            operArray[0] = operArray[1];
+            operArray.pop();
+            console.log(operArray);
+            return;
+        } else if (operUsed === true && numAdded === false && operArray.length !== numArray.length) {
         operArray[operArray.length -2] = operArray[operArray.length -1];
         operArray.pop();
         console.log(operArray);
@@ -164,18 +163,14 @@ const backSpace = (e) => {
 }
 
 const addOperators = e => {
-    
-        checkOperators();
+       
+      
         
         if (numAdded === true && !isNaN(total)) {   
         numArray.push(parseInt(total));
         total = "";  
         }
-      // else if (isNaN(numArray[0] && numAdded === true)) {
-          // numArray.splice(0,numArray.length -1);
-        //} 
-           
-        numAdded = false;  
+
      if (e.target.id === "divide" || e.key === "/") {
         operArray.push("d");
         operator = "d";
@@ -197,10 +192,10 @@ const addOperators = e => {
     } else {
         console.log("Error in addOperators()");
     }
-    if (operArray.length === 3) {
-       // totalNum();
-    }
-   // totalNum();
+    checkOperators();
+    numAdded = false;  
+    console.log(operArray);
+    console.log(numArray); 
 }
 
 const keyInput = e => {
