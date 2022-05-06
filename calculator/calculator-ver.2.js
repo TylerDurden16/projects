@@ -3,11 +3,10 @@ const numArray = [];
 const operArray = [];
 let operUsed = false;
 let operator;
-let number = 0;
 let numAdded = false;
 let removedArrEl;
 let sum = 0;
-
+let decimal = false;
 const multipyPos = [];
 const dividePos = [];
 const addPos = [];
@@ -16,26 +15,50 @@ let numInput = document.getElementById("numInput");
 let currTotal = document.getElementById("currTotal");
 currTotal.style.display = "none";
 const arrStr = operArray.join("");
+let sumTotaled = false;
 
 const erase = e => {
     numInput.textContent = 0;
     total = "";
     currTotal.textContent = "";
+    sumTotaled = false;
     numArray.splice(0, numArray.length);
     operArray.splice(0, operArray.length);
 }
 
-const totalNum = () => {
-   //console.log(operArray);
-  
-    //numArray[0] = sum;
-    //numArray.pop();
-    
-    //operArray[0] = operArray[1];
-    //operArray.pop();
-
+const powerRoot = () => {
+  let pRArrStr = arrStr;
+  for (let j = 0; ; j++) {  
+      if (pRArrStr.startsWith("s") || pRArrStr.startsWith("a")
+      || pRArrStr.startsWith("d") || pRArrStr.startsWith("m")) {
+          continue;
+} else if (operArray[j] === "pow") {
+    let index = operArray.indexOf("pow");
+    sum = Math.pow(numArray[index], numArray[index + 1]);
+    numArray.splice(index, 2, sum);
     console.log(numArray);
-    //return sum;
+    operArray.splice(index, 1);
+    pRArrStr = operArray.join("");
+    console.log(operArray);
+   }
+   if (pRArrStr.includes("pow")) {
+       powerRoot();
+       break;
+   } else if (operArray.length === 0) {
+         sum = sum.toString();
+         if (sum.length >= 17) {
+             console.log("H");
+             sum = Number(sum);
+             sum = sum.toPrecision(9);
+    }
+       numInput.textContent = sum;
+       break;
+   } else if (!operArray.includes("pow") && pRArrStr.includes("m") || pRArrStr.includes("d")) { 
+    console.log("G");
+    multiplyDivide();
+    break; 
+ }
+} 
 }
 
 const multiplyDivide = () => {
@@ -52,24 +75,38 @@ const multiplyDivide = () => {
      operArray.splice(index, 1);
      mDArrStr = operArray.join("");
      console.log(operArray);
-    } if (operArray[j] === "d") {
+    }  if (operArray[j] === "d") {
      index = operArray.indexOf("d");
+     if (numArray[index + 1] === 0) {
+        numArray.splice(0, numArray.length);
+        operArray.splice(0, operArray.length);
+        numInput.textContent = "ERROR";
+        return "ERROR";
+    } 
      sum = numArray[index] / numArray[index + 1];
      numArray.splice(index, 2, sum);
     // console.log(numArray);
      operArray.splice(index, 1);
      mDArrStr = operArray.join();
      console.log(operArray);
-     console.log(mDArrStr);
- } 
+     console.log(mDArrStr); 
+}
  if (mDArrStr.includes("d") || mDArrStr.includes("m")) {  
    multiplyDivide();
     break;
 }  
 else if (operArray.length === 0) {
+    sum = sum.toString();
+        if (sum.length >= 17) {
+            console.log("H");
+          sum = Number(sum);
+          sum = sum.toPrecision(9);
+        }
+    numInput.textContent = sum;
+   // numArray.push(sum);
     break;
 }
-else if (!operArray.includes("d",0) && !operArray.includes("m",0)) { 
+else if (!operArray.includes("d",0) && !operArray.includes("m",0) && mDArrStr.includes("a") || mDArrStr.includes("s")) { 
     console.log("G");
     addSubtract();
     break; 
@@ -79,17 +116,19 @@ console.log(numArray);
 } 
 
 const operate = () => { 
+    
     if (numArray.length === 1) {
         return numArray;
+    } else if (operArray.includes("pow")) {
+        powerRoot();
     }
-    else if (operArray.includes("m") || operArray.includes("d") && !isNaN(numArray)) {
+    else if (operArray.includes("m") || operArray.includes("d")) {
     multiplyDivide();
    }   
        else if (!operArray.includes("d") || !operArray.includes("m") && operArray.includes("a") || operArray.includes("s")) {
            addSubtract();
        }
        operUsed = false;
-       numInput.textContent = sum;
 }
 const addSubtract = () => {
     let aSArrStr = arrStr;
@@ -116,10 +155,17 @@ const addSubtract = () => {
         } if (aSArrStr.includes("a") || aSArrStr.includes("s")) {
             addSubtract();
             break;
-   } else if (numArray.length === 1 || operArray.length === 0) {
-            break;
+   } else if (numArray.length === 1 || operArray.length === 0) { 
+        sum = sum.toString();
+        if (sum.length >= 17) {
+            console.log("H");
+            sum = Number(sum);
+            sum = sum.toPrecision(9);
         }
-    } console.log(arrStr);
+        numInput.textContent = sum;
+        break;
+    }
+}
     console.log(numArray);
     }
 
@@ -128,21 +174,26 @@ const w = () => {
     operArray.push("s","m","d","a","m","s","d");
 }
 
-const addValues = e => {  
-     total += e.target.value || e.key;
-     numInput.textContent = total;
+const addValues = e => { 
+    total += e.target.value || e.key;
+    // numInput.textContent = total;
+     if (total.startsWith("0")) {
+        total = total.slice(0,0);
+        total += e.target.value || e.key;
+    }
+    numInput.textContent = total;
      numAdded = true;  
      operUsed = false; 
 }
 
 const checkOperators = () => { 
-    
-        if (operUsed === true && numAdded === false && operArray.length === 1) {
+        if (operUsed === true && numAdded === false && operArray.length === 1 && sumTotaled === false) {
             operArray[0] = operArray[1];
             operArray.pop();
             console.log(operArray);
             return;
-        } else if (operUsed === true && numAdded === false && operArray.length !== numArray.length) {
+        } else if (operUsed === true && numAdded === false && operArray.length
+            !== numArray.length ) {
         operArray[operArray.length -2] = operArray[operArray.length -1];
         operArray.pop();
         console.log(operArray);
@@ -150,28 +201,32 @@ const checkOperators = () => {
 
 }
 
-const backSpace = (e) => {
+const backSpace = e => {
     if (!total) {
-        total = "";
+        total = 0;
         numInput.textContent = 0;
         return;
     } else {
         total = total.slice(0, total.length -1);
+        if (total === 0 || !total) {
+            total = 0;
+            numInput.textContent = 0;
+            return;
+        } 
         numInput.textContent = total;
     }
       console.log(total);
 }
 
 const addOperators = e => {
-       
-      
-        
         if (numAdded === true && !isNaN(total)) {   
-        numArray.push(parseInt(total));
+        numArray.push(Number(total));
         total = "";  
         }
-
-     if (e.target.id === "divide" || e.key === "/") {
+     if (e.target.id === "power") {
+        operArray.push("pow");
+        operUsed = true;
+     } else if (e.target.id === "divide" || e.key === "/") {
         operArray.push("d");
         operator = "d";
         operUsed = true;
@@ -188,25 +243,38 @@ const addOperators = e => {
         operator = "a";
         operUsed = true;
     } else if (e.target.id === "equals" || e.key === "=" || e.key === "Enter") {
+        if (operArray.length === numArray.length) {
+            return;
+        }
+        console.log(numArray);
         operate();
+        sumTotaled = true;
     } else {
         console.log("Error in addOperators()");
     }
     checkOperators();
-    numAdded = false;  
+    numAdded = false; 
+    decimal = false; 
     console.log(operArray);
-    console.log(numArray); 
+   // console.log(numArray); 
 }
 
 const keyInput = e => {
     const key = e.key;
-    //console.log(e.key);
+    
     if (key === "0" || key === "1" || key === "2" || key === "3" || key === "4" || key === "4"
-   || key === "5" || key === "6" || key === "7" || key === "8" || key === "9" || key === "."){
+   || key === "5" || key === "6" || key === "7" || key === "8" || key === "9" || key === ".") {
+       if (key === "." && decimal === true) {
+           return;
+       }
+       if (key === ".") {
+        decimal = true;
+    }
        addValues(e);
-   } if (key === "+" || key === "-" || key === "*" || key === "/" || key === "=" || key === "Enter") {
+
+   } else if (key === "+" || key === "-" || key === "*" || key === "/" || key === "=" || key === "Enter") {
        addOperators(e);
-   } if (key === "Backspace") {
+   } else if (key === "Backspace") {
        backSpace(e);
    }
     else {
