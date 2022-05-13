@@ -12,27 +12,24 @@ const dividePos = [];
 const addPos = [];
 const subPos = [];
 let numInput = document.getElementById("numInput");
-let currTotal = document.getElementById("currTotal");
-currTotal.style.display = "none";
 const arrStr = operArray.join("");
 let sumTotaled = false;
 
-const erase = e => {
+const erase = () => {
     numInput.textContent = 0;
     total = "";
-    currTotal.textContent = "";
-    sumTotaled = false;
+    sumTotaled = false; 
     numArray.splice(0, numArray.length);
     operArray.splice(0, operArray.length);
 }
 
 const powerRoot = () => {
   let pRArrStr = arrStr;
-  for (let j = 0; ; j++) {  
+  for (let i = 0; ; i++) {  
       if (pRArrStr.startsWith("s") || pRArrStr.startsWith("a")
       || pRArrStr.startsWith("d") || pRArrStr.startsWith("m")) {
           continue;
-} else if (operArray[j] === "pow") {
+} else if (operArray[i] === "pow") {
     let index = operArray.indexOf("pow");
     sum = Math.pow(numArray[index], numArray[index + 1]);
     numArray.splice(index, 2, sum);
@@ -40,8 +37,17 @@ const powerRoot = () => {
     operArray.splice(index, 1);
     pRArrStr = operArray.join("");
     console.log(operArray);
-   }
-   if (pRArrStr.includes("pow")) {
+   } if (operArray[i] === "sR") {
+    let  index = operArray.indexOf("sR");
+    console.log(numArray);
+      sum = Math.sqrt(numArray[index]);
+      numArray.splice(index, 1, sum);
+      operArray.splice(index, 1); 
+      pRArrStr = operArray.join(""); 
+      console.log(operArray);
+      console.log(numArray);
+  }
+   if (pRArrStr.includes("pow") || pRArrStr.includes("sR")) {
        powerRoot();
        break;
    } else if (operArray.length === 0) {
@@ -53,7 +59,7 @@ const powerRoot = () => {
     }
        numInput.textContent = sum;
        break;
-   } else if (!operArray.includes("pow") && pRArrStr.includes("m") || pRArrStr.includes("d")) { 
+   } else if (!operArray.includes("pow") && !operArray.includes("sR") && pRArrStr.includes("m") || pRArrStr.includes("d")) { 
     console.log("G");
     multiplyDivide();
     break; 
@@ -99,11 +105,10 @@ else if (operArray.length === 0) {
     sum = sum.toString();
         if (sum.length >= 17) {
             console.log("H");
-          sum = Number(sum);
-          sum = sum.toPrecision(9);
+            sum = Number(sum);
+            sum = sum.toPrecision(9);
         }
     numInput.textContent = sum;
-   // numArray.push(sum);
     break;
 }
 else if (!operArray.includes("d",0) && !operArray.includes("m",0) && mDArrStr.includes("a") || mDArrStr.includes("s")) { 
@@ -117,24 +122,22 @@ console.log(numArray);
 
 const operate = () => { 
     
-    if (numArray.length === 1) {
+    if (numArray.length === 1 && !operArray.includes("sR")) {
         return numArray;
-    } else if (operArray.includes("pow")) {
+    } else if (operArray.includes("pow") || operArray.includes("sR") || numArray.length === 1 && operArray.includes("sR")) {
         powerRoot();
-    }
-    else if (operArray.includes("m") || operArray.includes("d")) {
+    } else if (operArray.includes("m") || operArray.includes("d") && !operArray.includes("pow") || !operArray.includes("sR")) {
     multiplyDivide();
-   }   
-       else if (!operArray.includes("d") || !operArray.includes("m") && operArray.includes("a") || operArray.includes("s")) {
+   } else if (!operArray.includes("d") || !operArray.includes("m") && operArray.includes("a") || operArray.includes("s")) {
            addSubtract();
        }
        operUsed = false;
 }
 const addSubtract = () => {
     let aSArrStr = arrStr;
-        for (let i = 0; ; i++) {
+        for (let k = 0; ; k++) {
             
-        if (operArray[i] === "a") {
+        if (operArray[k] === "a") {
           let  index = operArray.indexOf("a");
           console.log(numArray);
             sum = numArray[index] + numArray[index + 1];
@@ -143,7 +146,7 @@ const addSubtract = () => {
             aSArrStr = operArray.join(""); 
             console.log(operArray);
             console.log(numArray);
-        } if (operArray[i] === "s") {
+        } if (operArray[k] === "s") {
             index = operArray.indexOf("s");
             sum = numArray[index] - numArray[index + 1];
             console.log(sum);
@@ -176,14 +179,16 @@ const w = () => {
 
 const addValues = e => { 
     total += e.target.value || e.key;
-    // numInput.textContent = total;
+    //console.log(e.target.value);
      if (total.startsWith("0")) {
         total = total.slice(0,0);
         total += e.target.value || e.key;
-    }
+    } else if (total.length > 17) {
+        return;
+    } 
     numInput.textContent = total;
-     numAdded = true;  
-     operUsed = false; 
+    numAdded = true;  
+    operUsed = false; 
 }
 
 const checkOperators = () => { 
@@ -193,15 +198,14 @@ const checkOperators = () => {
             console.log(operArray);
             return;
         } else if (operUsed === true && numAdded === false && operArray.length
-            !== numArray.length ) {
+            !== numArray.length) {
         operArray[operArray.length -2] = operArray[operArray.length -1];
         operArray.pop();
         console.log(operArray);
     }
-
 }
 
-const backSpace = e => {
+const backSpace = () => {
     if (!total) {
         total = 0;
         numInput.textContent = 0;
@@ -212,21 +216,32 @@ const backSpace = e => {
             total = 0;
             numInput.textContent = 0;
             return;
-        } 
+        }   
         numInput.textContent = total;
     }
       console.log(total);
 }
 
 const addOperators = e => {
-        if (numAdded === true && !isNaN(total)) {   
+    if (total === ".") {
+        return;
+    } else if (numAdded === true && !isNaN(total)) {   
         numArray.push(Number(total));
         total = "";  
         }
+        
      if (e.target.id === "power") {
         operArray.push("pow");
         operUsed = true;
-     } else if (e.target.id === "divide" || e.key === "/") {
+     } else if (e.target.id === "squareRoot") {
+         operArray.push("sR");
+         operUsed = true;
+         /*if (operArray.includes("sR") && operArray.length === numArray.length) {
+             operate();
+             sumTotaled = true;
+         }*/
+     }
+      else if (e.target.id === "divide" || e.key === "/") {
         operArray.push("d");
         operator = "d";
         operUsed = true;
@@ -243,12 +258,13 @@ const addOperators = e => {
         operator = "a";
         operUsed = true;
     } else if (e.target.id === "equals" || e.key === "=" || e.key === "Enter") {
-        if (operArray.length === numArray.length) {
+        if (operArray.length === numArray.length && !operArray.includes("sR")) {
             return;
-        }
+        } else if (operArray.length !== numArray.length || operArray.includes("sR") && operArray.length === numArray.length) {
         console.log(numArray);
         operate();
         sumTotaled = true;
+       }
     } else {
         console.log("Error in addOperators()");
     }
@@ -256,26 +272,25 @@ const addOperators = e => {
     numAdded = false; 
     decimal = false; 
     console.log(operArray);
-   // console.log(numArray); 
+    console.log(numArray); 
 }
 
 const keyInput = e => {
     const key = e.key;
-    
+    const clickNum = e.target;
     if (key === "0" || key === "1" || key === "2" || key === "3" || key === "4" || key === "4"
-   || key === "5" || key === "6" || key === "7" || key === "8" || key === "9" || key === ".") {
-       if (key === "." && decimal === true) {
+   || key === "5" || key === "6" || key === "7" || key === "8" || key === "9" || key === "." || clickNum.classList.value === "numBtn") {
+       if (key === "." || clickNum.value === "." && decimal === true) {
            return;
        }
-       if (key === ".") {
+       if (key === "." || clickNum.value === ".") {
         decimal = true;
     }
        addValues(e);
-
    } else if (key === "+" || key === "-" || key === "*" || key === "/" || key === "=" || key === "Enter") {
        addOperators(e);
    } else if (key === "Backspace") {
-       backSpace(e);
+       backSpace();
    }
     else {
        return;
@@ -287,7 +302,7 @@ const clrBtn = document.getElementById("clrBtn");
 const operBtn = document.querySelectorAll(".operBtn");
 const bckSpace = document.getElementById("backSpace");
 
-numBtn.forEach(numbers => numbers.addEventListener("click", addValues));
+numBtn.forEach(numbers => numbers.addEventListener("click", keyInput));
 operBtn.forEach(operators => operators.addEventListener("click", addOperators))
 clrBtn.addEventListener("click", erase);
 window.addEventListener("keydown", keyInput);
