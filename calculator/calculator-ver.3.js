@@ -4,13 +4,11 @@ const operArray = [];
 let operUsed = false;
 let number = 0;
 let numAdded = false;
-let removedArrEl;
 let sum = 0;
 let decimal = false;
 let sumTotaled = false;
 let sumStr;
-const tSArray = [];
-const tSOArray = [];
+
 let numInput = document.getElementById("numInput");
 let sR = false;
 let pow = false;
@@ -22,21 +20,16 @@ const erase = () => {
     sumTotaled = false;
     numArray.splice(0, numArray.length);
     operArray.splice(0, operArray.length);
-    tSArray.splice(0, numArray.length);
-    tSOArray.splice(0, operArray.length);
 }
 
 const power = () => {
     const powIndex = operArray.indexOf("pow");
-    if (isNaN(numArray[powIndex + 1])) {
-        console.log("IOU");
-        return;
-    }
+    if (isNaN(numArray[powIndex + 1])) return;
     sum = Math.pow(numArray[powIndex], numArray[powIndex + 1]);
     console.log(sum);
     sumStr = sum.toString();
     if (sumStr.includes(".") && sumStr.length >= 17) {
-        sum = sum.toFixed(2);
+       // sum = sum.toFixed(4);
         sum = Number(sum); 
     }
     if (sumStr.length > 17) {
@@ -51,7 +44,7 @@ const power = () => {
     
     numArray.splice(powIndex, 2, sum);
     operArray.splice(powIndex, 1);
-    console.log(operArray);
+    //console.log(operArray);
     const powStr = operArray.join("");
     if (powIndex !== 0) {
         if (operArray[0] === "*"  && !powStr.includes("pow") && !powStr.includes("sR") || operArray[0] === "+" && powStr.includes("*") && !powStr.includes("pow") && !powStr.includes("sR")
@@ -94,7 +87,7 @@ const sqRt = () => {
     console.log(sum);
     sumStr = sum.toString();
     if (sumStr.includes(".") && sumStr.length >= 17) {
-       // sum = sum.toFixed(2);
+      //  sum = sum.toFixed(4);
         sum = Number(sum); 
     }
     if (sumStr.length > 17) {
@@ -109,8 +102,8 @@ const sqRt = () => {
     numArray.splice(sRIndex, 1, sum);
     operArray.splice(sRIndex, 1);
     const sRStr = operArray.join("");
-    console.log(numArray);
-    console.log(operArray);
+    //console.log(numArray);
+    //console.log(operArray);
     if (sRIndex !== 0) {
         if (operArray[0] === "*" && !sRStr.includes("pow") && !sRStr.includes("sR") || operArray[0] === "+" && sRStr.includes("*") && !sRStr.includes("pow") && !sRStr.includes("sR")
         || operArray[0] === "-"  && sRStr.includes("*") && !sRStr.includes("pow") && !sRStr.includes("sR") && sR === false) {
@@ -148,12 +141,13 @@ const sqRt = () => {
 
 const multiply = () => {
     const multIndex = operArray.indexOf("*");
-    console.log(numArray, operArray);
+    //console.log(numArray, operArray);
     if (isNaN(numArray[multIndex + 1])) return;
     sum = numArray[multIndex] * numArray[multIndex + 1];
+    console.log(sum);
     sumStr = sum.toString();
     if (sumStr.includes(".") && sumStr.length > 17) {
-        sum = sum.toFixed(2);
+      //  sum = sum.toFixed(4);
         sum = Number(sum); 
     }
     if (sumStr.length >= 17) {
@@ -184,7 +178,6 @@ const multiply = () => {
         }
         return;
     }
-   // console.log(numArray, operArray);
 }
 
 const divide = () => {
@@ -199,9 +192,10 @@ const divide = () => {
     }
     if (isNaN(numArray[divIndex + 1])) return;
     sum = numArray[divIndex] / numArray[divIndex + 1];
+    console.log(sum);
     sumStr = sum.toString();
     if (sumStr.includes(".") && sumStr.length >= 17) {
-        sum = sum.toFixed(2);
+     //   sum = sum.toFixed(4);
         sum = Number(sum); 
     }
     if (sumStr.length > 17) {
@@ -213,7 +207,7 @@ const divide = () => {
     }
     //numInput.textContent = sum;
     
-    console.log(numArray, operArray);
+    //console.log(numArray, operArray);
     numArray.splice(divIndex, 2, sum);
     operArray.splice(divIndex, 1);
     dStr = operArray.join("");
@@ -256,15 +250,16 @@ const divide = () => {
         }
         return;
     }
-    console.log(numArray, operArray);
+   // console.log(numArray, operArray);
 }
 const subtract = () => {
     const subIndex = operArray.indexOf("-");
     if (isNaN(numArray[subIndex + 1])) return;
     sum = numArray[subIndex] - numArray[subIndex + 1];
+    console.log(sum);
     sumStr = sum.toString();
     if (sumStr.includes(".") && sumStr.length >= 17) {
-        sum = sum.toFixed(2);
+       // sum = sum.toFixed(4);
         sum = Number(sum); 
     }
     if (sumStr.length > 17) {
@@ -279,16 +274,16 @@ const subtract = () => {
     
     numArray.splice(subIndex, 2, sum);
     operArray.splice(subIndex, 1);
-    console.log(numArray, operArray);
+   // console.log(numArray, operArray);
 }
 const add = () => {
     const addIndex = operArray.indexOf("+");
     if (isNaN(numArray[addIndex + 1])) return;
     sum = numArray[addIndex] + numArray[addIndex + 1];
-    console.log(numArray, operArray);
+    console.log(sum);
     sumStr = sum.toString();
     if (sumStr.includes(".") && sumStr.length >= 17) {
-        sum = sum.toFixed(2);
+       // sum = sum.toFixed(4);
         sum = Number(sum); 
     }
     if (sumStr.length > 17) {
@@ -303,15 +298,13 @@ const add = () => {
     
     numArray.splice(addIndex, 2, sum);
     operArray.splice(addIndex, 1);
-    console.log(numArray, operArray);
+   // console.log(numArray, operArray);
     return sum;
 }
 const sum2 = () => {
     //numInput.textContent = sum;
     //if ()
-    if (tSOArray[0] === "pow") {
-
-    }
+    
     operUsed = false;
     return sum;
 }
@@ -380,7 +373,19 @@ const totalNum = () => {
             }
         } else {
             console.log("Error in totalNum()");
-        } 
+        }sumStr = sum.toString();
+        if (sumStr.includes(".") && sumStr.length >= 17) {
+            sum = sum.toFixed(4);
+            sum = Number(sum); 
+            console.log("POO");
+        }
+         if (sum >= 10000000000000000n) {
+            numInput.textContent = sum.toPrecision(9);
+            console.log("BREAK");
+            return;
+        }
+        console.log(sum);
+        numInput.textContent = sum;
         operUsed = false;
     }
    // console.log(operArray);
@@ -399,11 +404,8 @@ const totalNum = () => {
     console.log(numArray);
     operArray[0] = operArray[1];
     operArray.pop();*/
-    if (sum >= 10000000000000000n) {
-        numInput.textContent = sum.toPrecision(9);
-        return;
-    }
-    numInput.textContent = sum;
+    
+
     
     console.log(numArray);
     return sum;
@@ -423,10 +425,7 @@ const addValues = e => {
 }
 
 const checkOperators = () => {
-    /*if (numAdded === false) {
-        numArray.splice(1, 1);
-        console.log(numArray);  
-    }*/if (operUsed === true && numAdded === false && operArray.length === 1 && sumTotaled === false && numArray.length === 0) {
+    if (operUsed === true && numAdded === false && operArray.length === 1 && sumTotaled === false && numArray.length === 0) {
         operArray[0] = operArray[1];
         operArray.pop();
         console.log(operArray);
