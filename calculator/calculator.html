@@ -11,11 +11,14 @@
     
         
     <div class="head">
-        <h2 id="numInput"></h2>
-        <div class="w">
-        <button type="button" value="clear" id="clrBtn">Clr</button>
-    </div>
+        <h2 id="numInput">0</h2>
+       <!--<div class="w">-->
+        <button type="button" id="clrBtn">Clr</button>
+    <!--</div>-->
     <div id="calculator">
+        <div class="backSpace">
+            <button type="button" id="backSpace" value="Backspace">&larr;</button>
+        </div>
         <div class="mainCon">
             <div class="numCon">
                 <div class="numbers 7-9">
@@ -35,18 +38,18 @@
                 </div>
                 <div class="zero">
                     <button type="button" class="numBtn" value="0" id="0">0</button>
-                    <button type="button" id="decimal"> . </button>
+                    <button type="button" class="numBtn" value="." id="decimal"> . </button>
                 </div>
             </div>  
+ 
         </div>
         <div class="operCon">
-                <button type="button" class="operBtn" id="divide">%</button>
-                <button type="button" class="operBtn" id="multiply">*</button>
-                <button type="button" class="operBtn" id="subtract">-</button>
-                <button type="button" class="operBtn" id="add">+</button>
-                <button type="button" class="operBtn" id="equals">=</button>
-            </div>
-    
+            <button type="button" class="operBtn" id="divide">/</button>
+            <button type="button" class="operBtn" id="multiply">*</button>
+            <button type="button" class="operBtn" id="subtract">-</button>
+            <button type="button" class="operBtn" id="add">+</button>
+            <button type="button" class="operBtn" id="equals">=</button>
+        </div>
 </div>
 </div>
     <h1 id="output"></h1>

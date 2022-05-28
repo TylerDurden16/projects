@@ -62,3 +62,19 @@ button {
 #clrBtn, #power {
     padding: 8px 2px;
 }
+.root {
+    display: flex;
+    justify-content: end;
+}
+.numBtn {
+    background-color: black;
+    color: white;
+}
+#backSpace {
+    color: black;
+    background-color: white;
+}
+.operBtn {
+    color: white;
+    background-color: rgb(148, 146, 146);
+}
