@@ -1,0 +1,80 @@
+.head {
+    display: flex;
+    flex-direction: column;
+    margin: 150px;
+    align-items: flex-end;
+    border: solid;
+    padding: 16px;
+}
+#calculator {
+    display: flex;
+    align-items: flex-end;
+    margin-top: 16px;
+}
+.mainCon {
+    display: flex;
+    padding: 0px 10px;
+}
+.operCon {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+}
+body {
+    display: flex;
+    justify-content: center;
+}
+.numCon {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: end;
+}
+.numbers {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+.zero {
+    display: flex;
+    gap: 12px;
+}
+#numInput {
+    border: solid black;
+    padding: 8px;
+    width: 200px;
+    display: flex;
+    justify-content: end;
+}
+button {
+    border: solid;
+    padding: 8px;
+}
+.backSpace {
+    
+}
+.w {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+#clrBtn, #power {
+    padding: 8px 2px;
+}
+.root {
+    display: flex;
+    justify-content: end;
+}
+.numBtn {
+    background-color: black;
+    color: white;
+}
+#backSpace {
+    color: black;
+    background-color: white;
+}
+.operBtn {
+    color: white;
+    background-color: rgb(148, 146, 146);
+}
