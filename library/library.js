@@ -17,7 +17,7 @@ const subBtn = document.createElement("button");
 const mainCon = document.createElement("div");
 mainCon.setAttribute("class", "main-con");
 let cardCon = document.createElement("div");
-//mainCon.appendChild(cardCon);
+mainCon.appendChild(cardCon);
 
 
 const removeBtn = document.createElement("button");
@@ -37,7 +37,8 @@ function Book(title, author, pages, read) {
 
 Book.prototype.togRead = function(e) {
     this.read === "read" ? this.read = "not read yet" : this.read = "read";
-    
+    mainCon.removeChild(cardCon);
+    cardCon = document.createElement("div");
     addLibraryToPage();
     
 }
@@ -67,9 +68,12 @@ function addBookToLibrary(e) {
 
 const addLibraryToPage = e => {
     bookPos = 0;
+    //mainCon.removeChild(cardCon);
+   // if (mainCon)
+   // cardCon = document.createElement("div");
     for (let i = 0; i < myLibrary.length; i++) {
-        mainCon.removeChild(cardCon);
-       cardCon = document.createElement("div");
+        
+        
         cardCon.classList = "card-con";
                 const card = document.createElement("div");
                 card.setAttribute("class", "card");
@@ -151,6 +155,9 @@ const removeBook = e => {
    cardCon.removeChild(e.target.parentElement);
    const bookPos = e.target.parentElement.dataset.bookPos;
    myLibrary.splice(bookPos, 1);
+   mainCon.removeChild(cardCon);
+    cardCon = document.createElement("div");
+
    addLibraryToPage();
 }
 
