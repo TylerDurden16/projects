@@ -1,0 +1,28 @@
+.inactive {
+    display: none;
+}
+#yes, #no {
+    display: inline;
+}
+
+.main-con {
+    display: grid;
+    background-color: #dae1eb;
+    grid-template-columns: 1fr 1fr;
+    padding: 25px;
+}
+.card {
+    display: grid;
+    padding: 15px;
+    grid-template-rows: 0.5fr 0.5fr;
+    border: 1px solid rgb(15, 144, 219);
+}
+.card-con {
+    display: grid;
+    gap: 25px;
+    grid-template-columns: repeat(auto-fit,minmax(250px, 1fr));
+}
+
+.remove-btn {
+    width: 75px;
+}
