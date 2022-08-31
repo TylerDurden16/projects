@@ -1,0 +1,17 @@
+.board-div {
+    border: 1px solid green;
+    width: 250px;
+    height: 200px;
+    display: inline-block;
+    text-align: center;
+    font-weight: bolder;
+    font-size: 200px;
+    display: grid;
+    align-content: center;
+}
+
+.game-board {
+    display: grid;
+    grid-template-columns: .1fr .1fr .1fr;
+    gap: 10px;
+}
