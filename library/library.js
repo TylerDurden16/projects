@@ -58,7 +58,7 @@ Book.prototype.togRead = function(e) {
     this.read === "read" ? this.read = "not read yet" : this.read = "read";
     mainCon.removeChild(cardCon);
     cardCon = document.createElement("div");
-    addLibraryToPage();   
+    addLibraryToPage(e);   
 }
 
 const togRead = e => {
@@ -84,14 +84,13 @@ function addBookToLibrary(e) {
     addNewBook(e);
 }
 
-const addLibraryToPage = e => {
-    bookPos = 0;
+const createBook = (title, author, pages, read) => {
 
     for (let i = 0; i < myLibrary.length; i++) {
         if (i > 0 && myLibrary.length >= 2 && myLibrary[i].title === myLibrary[i-1].title && myLibrary[i].author === myLibrary[i-1].author) {
             continue;
         };
-              
+                      
                 const card = document.createElement("div");
                 cardCon.classList = "card-con";
                 card.setAttribute("class", "card");
@@ -104,7 +103,7 @@ const addLibraryToPage = e => {
                 card.appendChild(removeBtn);
                 const pTitle = document.createElement("p");
                 pTitle.setAttribute("class", "p-title");
-                pTitle.textContent = myLibrary[i].title;
+                pTitle.textContent = title;
                 card.appendChild(pTitle);
                 const pAuthor = document.createElement("p");
                 pAuthor.setAttribute("class", "p-author");
@@ -112,28 +111,32 @@ const addLibraryToPage = e => {
                 by.classList = "by";
                 by.textContent = "by";
                 card.appendChild(by);
-                pAuthor.textContent = `${myLibrary[i].author}`;
+                pAuthor.textContent = author;
                 card.appendChild(pAuthor);
                 const pPages = document.createElement("p");
                 pPages.setAttribute("class", "p-pages");
-                pPages.textContent = `${myLibrary[i].pages} pages`;
+                pPages.textContent = `${pages} pages`;
                 card.appendChild(pPages);
                 const pRead = document.createElement("p");
                 pRead.setAttribute("class", "p-read");
-                pRead.textContent = myLibrary[i].read;
+                pRead.textContent = read;
                 card.appendChild(pRead);
                 const togReadBtn = document.createElement("button");
                 togReadBtn.setAttribute("type", "button");
-                togReadBtn.classList = "tog-read-btn";
-                
+                togReadBtn.classList = "tog-read-btn";         
                 myLibrary[i].read === "read" ? togReadBtn.textContent = "Not Read" : togReadBtn.textContent = "Read";
                 card.appendChild(togReadBtn);
-                cardCon.appendChild(card);
-                
+                cardCon.appendChild(card);                
                 removeBtn.addEventListener("click", removeBook);
                 togReadBtn.addEventListener("click", togRead);
-               // mainCon.appendChild(cardCon);
+
     } 
+}
+
+const addLibraryToPage = e => {
+    bookPos = 0;
+
+createBook(myLibrary[i].title, myLibrary[i].author, myLibrary[i].pages, myLibrary[i].read)
 }
 
 const addNewBook = e => {
