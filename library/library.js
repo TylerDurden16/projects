@@ -13,19 +13,19 @@ const readLabY = document.createElement("label");
 const readInputN = document.createElement("input");
 const readLabN = document.createElement("label");
 const readDiv = document.createElement("div");
-const subBtn = document.createElement("button");
-const mainCon = document.createElement("div");
-mainCon.setAttribute("class", "main-con");
-let cardCon = document.createElement("div");
-const newBookBtn = document.createElement("button");
-newBookBtn.setAttribute("class", "new-book-Btn");
-newBookBtn.textContent = "NEW BOOK";
+const subBtn = document.querySelector(".sub-btn");
+const mainCon = document.querySelector(".main-con");
+//mainCon.setAttribute("class", "main-con");
+let cardCon = document.querySelector(".card-con");
+const newBookBtn = document.querySelector(".new-btn-book");
+//newBookBtn.setAttribute("class", "new-book-Btn");
+//newBookBtn.textContent = "NEW BOOK";
 //document.body.appendChild(newBookBtn);
-mainCon.appendChild(cardCon);
-const wholeCon = document.createElement("div");
-wholeCon.classList ="whole-con";
-wholeCon.appendChild(newBookBtn);
-wholeCon.appendChild(mainCon);
+//mainCon.appendChild(cardCon);
+//const wholeCon = document.createElement("div");
+//wholeCon.classList ="whole-con";
+//wholeCon.appendChild(newBookBtn);
+//wholeCon.appendChild(mainCon);
 
 const removeBtn = document.createElement("button");
 let myLibrary = [];
@@ -58,8 +58,7 @@ Book.prototype.togRead = function(e) {
     this.read === "read" ? this.read = "not read yet" : this.read = "read";
     mainCon.removeChild(cardCon);
     cardCon = document.createElement("div");
-    addLibraryToPage();
-    
+    addLibraryToPage();   
 }
 
 const togRead = e => {
@@ -78,7 +77,7 @@ myLibrary.push(saw);
 
 function addBookToLibrary(e) {
     e.preventDefault();
-    newBookBtn.removeAttribute("class", "inactive");
+    newBookBtn.classList.toggle("inactive");
     wholeCon.removeChild(bookForm);
     const newBook = new Book(titleInput.value, authorInput.value, pagesInput.value, bookForm.elements["read_yet"].value);
     myLibrary.push(newBook);
@@ -92,8 +91,7 @@ const addLibraryToPage = e => {
         if (i > 0 && myLibrary.length >= 2 && myLibrary[i].title === myLibrary[i-1].title && myLibrary[i].author === myLibrary[i-1].author) {
             continue;
         };
-        
-        
+              
                 const card = document.createElement("div");
                 cardCon.classList = "card-con";
                 card.setAttribute("class", "card");
@@ -274,7 +272,7 @@ const addBook = e => {
 
 window.addEventListener("load", addLibraryToPage)
 
-document.body.appendChild(wholeCon);
+//document.body.appendChild(wholeCon);
 newBookBtn.addEventListener("click", addBook);
 bookForm.addEventListener("submit", addBookToLibrary);
 removeBtn.addEventListener("click", removeBook);
