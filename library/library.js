@@ -132,7 +132,7 @@ const addLibraryToPage = e => {
                 
                 removeBtn.addEventListener("click", removeBook);
                 togReadBtn.addEventListener("click", togRead);
-                mainCon.appendChild(cardCon);
+               // mainCon.appendChild(cardCon);
     } 
 }
 
