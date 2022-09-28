@@ -6,7 +6,7 @@
      <title>Library Project</title>
 </head>
 <body>
-<form id="book-form" action="./library2.html" novalidate>
+<form id="book-form" class="inactive" action="./library2.html" >
     <p><label for="title">Title:
         <input type="text" id="title" name="title">
     </label></p>
@@ -15,10 +15,13 @@
     </label></p>
     <p><label for="pages">Pages:
         <input type="text" id="pages" name="pages">
-    </label></p>
-    
+    </label></p> 
     <button type="submit" form="book-form">Add Book</button>
 </form>
+<div class="main-con">
+<button class="new-book-btn">New Book</button>
+<div class="card-con"></div>
+</div>
 </body>
     <script src="./library.js"></script>
 </html>
