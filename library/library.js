@@ -17,7 +17,7 @@ const subBtn = document.querySelector(".sub-btn");
 const mainCon = document.querySelector(".main-con");
 //mainCon.setAttribute("class", "main-con");
 let cardCon = document.querySelector(".card-con");
-const newBookBtn = document.querySelector(".new-btn-book");
+const newBookBtn = document.querySelector(".new-book-btn");
 //newBookBtn.setAttribute("class", "new-book-Btn");
 //newBookBtn.textContent = "NEW BOOK";
 //document.body.appendChild(newBookBtn);
