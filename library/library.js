@@ -32,13 +32,25 @@ let myLibrary = [];
 let bookPos = 0;
 const togReadBtn = document.createElement("button");
 
-function Book(title, author, pages, read) {
+/*function Book(title, author, pages, read) {
     this.title = title
     this.author = author
     this.pages = pages
     this.read = read
     this.info = function() {
         return `${title} by ${author}, ${pages} pages, ${read}`;
+    }
+}*/
+
+class Book {
+    constructor(title, author, pages, read) {
+    this.title = title
+    this.author = author
+    this.pages = pages
+    this.read = read
+    }
+    info() {
+        return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`;
     }
 }
 
@@ -78,11 +90,12 @@ const addLibraryToPage = e => {
 
     for (let i = 0; i < myLibrary.length; i++) {
         if (i > 0 && myLibrary.length >= 2 && myLibrary[i].title === myLibrary[i-1].title && myLibrary[i].author === myLibrary[i-1].author) {
-            console.log("Booty");
-            continue;}
+            continue;
+        };
         
-        cardCon.classList = "card-con";
+        
                 const card = document.createElement("div");
+                cardCon.classList = "card-con";
                 card.setAttribute("class", "card");
                 card.setAttribute("data-book-pos", `${bookPos}`);
                 bookPos++;
@@ -183,7 +196,7 @@ const removeBook = e => {
    addLibraryToPage();
 }
 
-function addBook(e) {
+const addBook = e => {
     titleInput.value = "";
     authorInput.value = "";
     pagesInput.value = "";
@@ -258,9 +271,6 @@ function addBook(e) {
 }
 //addLibraryToPage();
 
-class Book {
-    
-}
 
 window.addEventListener("load", addLibraryToPage)
 
