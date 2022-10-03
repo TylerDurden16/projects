@@ -1,22 +1,24 @@
-const bookForm = document.querySelector("form");
-const titleInput = document.querySelector("#title");
+//const bookForm = document.querySelector("form");
+//const titleInput = document.querySelector("#title");
 //const titleLab = document.createElement("label");
 //const titleP = document.createElement("p")
-const authorInput = document.querySelector("#author");
+//const authorInput = document.querySelector("#author");
 //const authorLab = document.createElement("label");
 //const authorP = document.createElement("p");
-const pagesInput = document.querySelector("#pages");
+//const pagesInput = document.querySelector("#pages");
 //const pagesLab = document.createElement("label");
 //const pagesP = document.createElement("p");
-const readInputY = document.querySelector(".read-yes");
+//const readInputY = document.querySelector(".read-yes");
 //const readLabY = document.createElement("label");
-const readInputN = document.querySelector(".read-no");
+//const readInputN = document.querySelector(".read-no");
 //const readLabN = document.createElement("label");
-const readDiv = document.querySelector(".read");
-const subBtn = document.querySelector(".sub-btn");
-const mainCon = document.querySelector(".main-con");
+
+//const readDiv = document.querySelector(".read");
+//const subBtn = document.querySelector(".sub-btn");
+
+//const mainCon = document.querySelector(".main-con");
 //mainCon.setAttribute("class", "main-con");
-let cardCon = document.querySelector(".card-con");
+//let cardCon = document.querySelector(".card-con");
 const newBookBtn = document.querySelector(".new-book-btn");
 //newBookBtn.setAttribute("class", "new-book-Btn");
 //newBookBtn.textContent = "NEW BOOK";
@@ -39,6 +41,7 @@ let myLibrary = [];
         return `${title} by ${author}, ${pages} pages, ${read}`;
     }
 }*/
+
 class Book {
     constructor(title, author, pages, read) {
     this.title = title
@@ -49,14 +52,17 @@ class Book {
     info() {
         return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`;
     }
+    get cardCon() {
+        return document.querySelector(".card-con");
+}
     addLibraryToPage() {
         for (let i = 0; i < myLibrary.length; i++) {
-            if (cardCon.children[i]) {
-               cardCon.children[i].setAttribute("data-book-pos", `${i}`);        
+            if (this.cardCon.children[i]) {
+               this.cardCon.children[i].setAttribute("data-book-pos", `${i}`);        
                  continue;
              };      
                     const card = document.createElement("div");
-                    cardCon.classList = "card-con";
+                    this.cardCon.classList = "card-con";
                     card.setAttribute("class", "card");
                     card.setAttribute("data-book-pos", `${i}`);
                     const removeBtn = document.createElement("button");
@@ -89,38 +95,31 @@ class Book {
                     togReadBtn.classList = "tog-read-btn";      
                     myLibrary[i].read === "Read" ? togReadBtn.textContent = "Not Read" : togReadBtn.textContent = "Read";
                     card.appendChild(togReadBtn);
-                    cardCon.appendChild(card);  
+                    this.cardCon.appendChild(card);  
                     removeBtn.addEventListener("click", this.removeBook);
                     togReadBtn.addEventListener("click", this.togRead);
-        }  
+        }
     }
     removeBook(e) {
-        cardCon.removeChild(e.target.parentElement);
-        const bookPos = e.target.parentElement.dataset.bookPos;
+        const bookPos = this.parentNode.dataset.bookPos;
+        myLibrary[bookPos].cardCon.removeChild(e.target.parentElement);
         myLibrary.splice(bookPos, 1);
         myLibrary[bookPos].addLibraryToPage();
-        mainCon.replaceChild(cardCon, cardCon);
+        console.log(myLibrary);
      }
-     
 }
 
 Book.prototype.togRead = function(e) { 
     const bookPos = e.target.parentElement.dataset.bookPos;
     const readYet = e.target.parentNode.childNodes[5];
     const togReadBtn = e.target.parentNode.childNodes[6];
+    let libraryBk = myLibrary[bookPos]; 
     const book = e.target.parentNode;
-    readYet.textContent === "Read" ? readYet.textContent = "Not Read" : readYet.textContent = "Read";
-    readYet.textContent == "Read" ? togReadBtn.textContent = "Not Read" : togReadBtn.textContent = "Read";
-   /*if(this.read === "Read") { 
-        this.read = "Not Read";
-        togReadBtn = "Read";
-} 
-    else if (this.read === "Not Read") {
-        this.read = "Read";
-        togReadBtn = "Not read";
-    };*/  
-   // togReadBtn.textContent = readYet.textContent;
-    cardCon.replaceChild(book, book);
+    libraryBk.read === "Read" ? libraryBk.read = "Not Read" : libraryBk.read = "Read";
+    libraryBk.read == "Read" ? togReadBtn.textContent = "Not Read" : togReadBtn.textContent = "Read";
+    readYet.textContent = libraryBk.read;
+    libraryBk.cardCon.replaceChild(book, book);
+    //this.cardCon.replaceChild(book, book);
 }
 
 /*const togRead = e => {
@@ -156,6 +155,10 @@ myLibrary.push(saw);
 
 const addBookToLibrary = e => {
     e.preventDefault();
+    const titleInput = document.querySelector("#title");
+    const bookForm = document.querySelector("form");
+    const authorInput = document.querySelector("#author");
+    const pagesInput = document.querySelector("#pages");
     const togForm = () => {
         titleInput.value = "";
         authorInput.value = "";
@@ -168,13 +171,12 @@ const addBookToLibrary = e => {
         togForm();
         return;
      }
-    readInputY.checked = true;
+     document.querySelector(".read-yes").checked = true;
     newBookBtn.classList.toggle("inactive");
     bookForm.classList.toggle("inactive");
     const newBook = new Book(titleInput.value, authorInput.value, pagesInput.value, bookForm.elements["read_yet"].value);
     myLibrary.push(newBook);
-    newBook.addLibraryToPage();
-    
+    newBook.addLibraryToPage();  
 }
 /*const removeBook = e => {
     cardCon.removeChild(e.target.parentElement);
