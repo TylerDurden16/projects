@@ -6,7 +6,28 @@
      <title>Library Project</title>
 </head>
 <body>
-
+    <form class="inactive" action="./library2.html" >
+        <p><label for="title">Title:  
+            <input type="text" id="title" name="title">
+        </label></p>
+        <p><label for="author">Author: 
+            <input type="text" id="author" name="author">
+        </label></p>
+        <p><label for="pages">Pages: 
+            <input type="text" id="pages" name="pages">
+        </label></p>
+        <div class="read">
+            <input type="radio" id="yes" class="read-yes" name="read_yet" value="Read" checked>
+            <label for="yes">Yes</label>
+            <input type="radio" id="no" class="read-no" name="read_yet" value="Not Read">
+            <label for="no">No</label>
+        </div> 
+        <button type="submit" class="sub-Btn">Add Book</button>
+    </form>
+    <div class="whole-con">
+        <button class="new-book-btn">New Book</button>
+    <div class="main-con">
+    <div class="card-con">
 </body>
     <script src="./library.js"></script>
 </html>
