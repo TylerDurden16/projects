@@ -16,13 +16,13 @@ function Book(title, author, pages, read) {
      this.addLibraryToPage = () => {
         for (let i = 0; i < myLibrary.length; i++) {
             if (this.cardCon().children[i]) {
-               this.cardCon().children[i].setAttribute("data-book-pos", `${i}`);        
+               this.cardCon().children[i].setAttribute("data-book-pos", i);        
                  continue;
              };      
                     const card = document.createElement("div");
                     this.cardCon().classList = "card-con";
                     card.setAttribute("class", "card");
-                    card.setAttribute("data-book-pos", `${i}`);
+                    card.setAttribute("data-book-pos", i);
                     const removeBtn = document.createElement("button");
                     removeBtn.type = "button";
                     removeBtn.classList = "remove-btn";

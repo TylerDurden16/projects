@@ -55,16 +55,16 @@ class Book {
     get cardCon() {
         return document.querySelector(".card-con");
 }
-    addLibraryToPage() {
+    addLibraryToPage = () => {
         for (let i = 0; i < myLibrary.length; i++) {
             if (this.cardCon.children[i]) {
-               this.cardCon.children[i].setAttribute("data-book-pos", `${i}`);        
+               this.cardCon.children[i].setAttribute("data-book-pos", i);        
                  continue;
              };      
                     const card = document.createElement("div");
                     this.cardCon.classList = "card-con";
                     card.setAttribute("class", "card");
-                    card.setAttribute("data-book-pos", `${i}`);
+                    card.setAttribute("data-book-pos", i);
                     const removeBtn = document.createElement("button");
                     removeBtn.type = "button";
                     removeBtn.classList = "remove-btn";
@@ -100,16 +100,15 @@ class Book {
                     togReadBtn.addEventListener("click", this.togRead);
         }
     }
-    removeBook(e) {
-        const bookPos = this.parentNode.dataset.bookPos;
+    removeBook = e => {
+        const bookPos = e.target.parentElement.dataset.bookPos;
         myLibrary[bookPos].cardCon.removeChild(e.target.parentElement);
         myLibrary.splice(bookPos, 1);
         myLibrary[bookPos].addLibraryToPage();
-        console.log(myLibrary);
      }
 }
 
-Book.prototype.togRead = function(e) { 
+Book.prototype.togRead = function(e) {
     const bookPos = e.target.parentElement.dataset.bookPos;
     const readYet = e.target.parentNode.childNodes[5];
     const togReadBtn = e.target.parentNode.childNodes[6];
@@ -119,7 +118,6 @@ Book.prototype.togRead = function(e) {
     libraryBk.read == "Read" ? togReadBtn.textContent = "Not Read" : togReadBtn.textContent = "Read";
     readYet.textContent = libraryBk.read;
     libraryBk.cardCon.replaceChild(book, book);
-    //this.cardCon.replaceChild(book, book);
 }
 
 /*const togRead = e => {
@@ -144,7 +142,6 @@ Book.prototype.togRead = function(e) {
 
 
 const theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", 295, "Not Read");
-
 myLibrary.push(theHobbit);
 const saw = new Book("Saw", "James Wan", 956, "Not Read");
 const theConjuring = new Book("The Conjuring", "James Wan", 1023, "Read");
