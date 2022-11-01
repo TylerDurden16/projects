@@ -34,18 +34,3 @@ export const addCnToPg = () => {
     }
 }
 
-const newMn = () => {
-    const bg = document.querySelector(".background");
-    bg.removeChild(bg.firstChild);
-    const mnCard = document.createElement("div");
-    mnCard.classList = "main-card";
-    bg.appendChild(mnCard);
-    const headCon = document.createElement("div");
-    headCon.classList = "head-con";
-    const mnHead = document.createElement("h1");
-    mnHead.classList = "main-head";
-    headCon.appendChild(mnHead);
-    mnCard.appendChild(headCon);
-    bg.appendChild(mnCard);
-}
-export {newMn}
